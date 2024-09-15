@@ -1,0 +1,129 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('path/to/your/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+
+.title-container {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid #007BFF;
+}
+
+.title-container h1 {
+    margin: 0;
+    color: #007BFF;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Ajusta a altura para acomodar o título no topo */
+    padding: 20px;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Alinhamento Horizontal dos Campos */
+.flex-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-half {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-group-half input {
+    width: 100%; /* Garante que os inputs preencham o espaço disponível */
+}
+
+/* Estilo para a mensagem de resposta */
+.response-message {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+    display: none; /* Inicialmente oculto */
+}
+
+.response-message p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Estilo para a mensagem de erro */
+.response-message {
+    background: rgba(255, 0, 0, 0.1); /* Cor de fundo leve para erro */
+    border: 1px solid #f00; /* Borda vermelha para erro */
+    color: #f00; /* Texto vermelho para erro */
+}
+
+/* Estilo para a galeria de imagens */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaço entre as imagens */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-top: 2px solid #007BFF;
+}
+
+.image-gallery img {
+    width: 150px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

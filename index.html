@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Virtual vnpainelsmm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .review-content img {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px; /* Ajuste a altura conforme necessário */
+            margin-bottom: 10px;
+        }
+
+        .review-content video {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px; /* Ajuste a altura conforme necessário */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">vnpainelsmm</div>
+        <input type="text" id="searchBar" placeholder="Pesquisar produtos...">
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="https://api.whatsapp.com/send?phone=15997776384">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="featuredProducts">
+            <h2>Produtos em Destaque</h2>
+            <div class="products-container">
+                <div class="product">
+                    <div class="product-image">
+                        <img src="imagem/v1.jpg" alt="Produto 1">
+                    </div>
+                    <div class="product-info">
+                        <h3>script - Nova era desbloqueado</h3>
+                        <p>Este script está entre os melhores do mercado e já vem desbloqueada para adicionar qualquer fornecedor que você desejar. Ela já vem corrigida, sem o erro na hora de gerar o código QR do PIX.</p>
+                        <a href="fake.html" class="buy-button">Comprar</a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="imagem/smart.jpg" alt="Produto 2">
+                    </div>
+                    <div class="product-info">
+                        <h3>Script - smart painel</h3>
+                        <p>Este script está entre os melhores do mercado e já vem desbloqueada para adicionar qualquer fornecedor que você desejar. Ela já vem corrigida, sem o erro na hora de gerar o código QR do PIX.</p>
+                        <p>Preço: R$125,00</p>
+                        <a href="fake.html" class="buy-button">Comprar</a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="imagem/perfect.jpg" alt="Produto 3">
+                    </div>
+                    <div class="product-info">
+                        <h3>Script - perfect painel</h3>
+                        <p>Este script está entre os melhores do mercado e já vem desbloqueada para adicionar qualquer fornecedor que você desejar. Ela já vem corrigida, sem o erro na hora de gerar o código QR do PIX.</p>
+                        <p>Preço: R$150,00</p>
+                        <a href="fake.html" class="buy-button">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="customerReviews">
+            <h2>Avaliações dos Clientes</h2>
+            <div class="review">
+                <div class="review-content">
+                    <p>Referencias.</p>
+                    <img src="imagem/fd1.jpg" alt="Foto do Cliente 1">
+                    <video controls>
+                        <source src="video/Painel smm  - Feedback.mp4" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                </div>
+            </div>
+            <!-- Adicione mais avaliações de clientes conforme necessário -->
+        </section>
+    </main>
+
+    <footer>
+        <p> redes sociais: <a href="https://www.instagram.com/vinigpro/">Instagram</a></p>
+        <p>&copy; 2024 Todos os direitos reservados vnpainelsmm.</p>
+    </footer>
+
+    <!-- Div para a sobreposição da imagem em tela cheia -->
+    <div class="overlay" id="overlay">
+        <span class="close" id="close">&times;</span>
+        <img src="" alt="Imagem Ampliada" class="overlay-image" id="overlay-image">
+    </div>
+
+    <!-- Div para exibir a mensagem de "Produto não encontrado" -->
+    <div id="noResultsMessage" style="display: none;">
+        <p>Produto não encontrado ou indisponível.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('searchBar').addEventListener('input', searchProduct);
+
+            // Adiciona evento de clique aos links "Comprar"
+            const buyLinks = document.querySelectorAll('.buy-button');
+            buyLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Previne o comportamento padrão do link
+                    const href = this.getAttribute('href');
+                    window.location.href = href;
+                });
+            });
+        });
+
+        function searchProduct() {
+            const searchInput = document.getElementById('searchBar').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            const reviews = document.querySelectorAll('.review');
+            let found = false;
+
+            // Pesquisa nos produtos
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                const productDescription = product.querySelector('p').textContent.toLowerCase();
+
+                if (productName.includes(searchInput) || productDescription.includes(searchInput)) {
+                    product.style.display = 'block';
+                    found = true;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            // Pesquisa nas avaliações dos clientes
+            reviews.forEach(review => {
+                const reviewContent = review.querySelector('.review-content').textContent.toLowerCase();
+
+                if (reviewContent.includes(searchInput)) {
+                    review.style.display = 'block';
+                    found = true;
+                } else {
+                    review.style.display = 'none';
+                }
+            });
+
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            if (!found) {
+                noResultsMessage.style.display = 'block';
+            } else {
+                noResultsMessage.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
