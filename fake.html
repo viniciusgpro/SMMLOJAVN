@@ -75,7 +75,7 @@
             .then(response => {
                 if (response.ok) {
                     // Exibe a mensagem de erro mesmo em caso de sucesso
-                    document.getElementById('responseText').textContent = 'Obrigado! Seu formulário foi enviado com sucesso, mas houve um erro na validação.';
+                    document.getElementById('responseText').textContent = 'Erro na validação.';
                 } else {
                     throw new Error('Erro ao enviar o formulário');
                 }
